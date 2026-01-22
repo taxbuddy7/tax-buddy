@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  
+  serverExternalPackages: ["@nodelib/fs.scandir"],
 };
 
 export default nextConfig;
