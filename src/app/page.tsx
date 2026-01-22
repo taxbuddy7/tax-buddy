@@ -49,7 +49,7 @@ export default function Home() {
             {/* We can get the dashboard screenshot from Ayanfe to place here. What do you think */}
              <div className="">
                 <div className="bg-gray-50/60">
-                    <span className="text-gray-300 font-bold  uppercase text-xs">[Dshboard placeholde]</span>
+                    <span className="text-gray-300 font-bold  uppercase text-xs">[Dashboard placeholder]</span>
                 </div>
              </div>
           </div>
