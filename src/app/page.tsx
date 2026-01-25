@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { Play, Info } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface FAQItem {
   q: string;
@@ -110,14 +111,21 @@ export default function Home() {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <button className="px-7 py-3.5 bg-green-700 hover:bg-green-800 text-white rounded-full font-semibold text-base shadow-lg shadow-green-100/50 transition-all">
-              Start free assessment
-            </button>
-            <button className="flex items-center gap-2 px-7 py-3.5 bg-white border border-gray-200 hover:border-gray-300 text-gray-800 rounded-full font-semibold text-base shadow-sm hover:shadow-md transition-all">
-              <Play size={16} fill="black" className="text-black" />
-              Watch Demo
-            </button>
-          </div>
+  
+  {/* The "Start Assessment" Link */}
+  <Link 
+    href="/assessment" 
+    className="px-7 py-3.5 bg-green-700 hover:bg-green-800 text-white rounded-full font-semibold text-base shadow-lg shadow-green-100/50 transition-all"
+  >
+    Start free assessment
+  </Link>
+
+  {/* The Demo Button (Keep as is, or link to a video) */}
+  <button className="flex items-center gap-2 px-7 py-3.5 bg-white border border-gray-200 hover:border-gray-300 text-gray-800 rounded-full font-semibold text-base shadow-sm hover:shadow-md transition-all">
+    <Play size={16} fill="black" className="text-black" />
+    Watch Demo
+  </button>
+</div>
 
           {/* Dashboard Image */}
           <div className="mt-16 relative mx-auto max-w-6xl">
