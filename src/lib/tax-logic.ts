@@ -6,49 +6,74 @@ export function calculateTaxStatus(profile: TaxProfile) {
   let message = '';
   let actionItem = '';
 
-  // 1. Business Logic
+  // --- 1. BUSINESS OWNER LOGIC ---
   if (profile.persona === 'business') {
     if (profile.revenueBand === 'below_25m') {
       status = 'safe';
-      title = '🎉 You are Exempt from Company Tax';
-      message = 'Under the 2026 Act, small companies with <₦25m turnover pay 0% CIT.';
-      actionItem = 'File "Nil Returns" by June 30th to avoid penalties.';
+      title = ' You are Exempt from Company Tax';
+      message = 'Good news! Under the 2026 Act, small companies with <₦25m turnover pay 0% CIT.';
+      actionItem = 'File "Nil Returns" by June 30th.';
     } else if (profile.revenueBand === '25m_50m') {
       status = 'warning';
       title = '⚠️ No CIT, but VAT Applies';
-      message = 'You are exempt from Income Tax, but you MUST collect/remit VAT.';
+      message = 'You are exempt from Income Tax, but you MUST collect and remit VAT.';
       actionItem = 'Register for VAT immediately.';
     } else {
       status = 'danger';
       title = '🚨 Standard Tax Regime Applies';
-      message = 'You are liable for 27.5% CIT and Education Tax.';
+      message = 'Your turnover exceeds ₦50m. You are fully liable for 27.5% CIT and Education Tax.';
       actionItem = 'Contact a tax consultant.';
     }
   } 
   
-  // 2. Freelancer Logic
-  else if (profile.persona === 'freelancer') {
+  // --- 2. SALARY EARNER (9-5) LOGIC ---
+  else if (profile.persona === 'salary') {
     if (profile.annualIncome === 'below_800k') {
       status = 'safe';
-      title = '✅ 100% Tax Free';
-      message = 'Your income is below the new ₦800k threshold.';
-      actionItem = 'No filing required.';
-    } else if (profile.incomeSource === 'foreign') {
-        status = 'warning';
-        title = '🌍 Foreign Income Alert';
-        message = 'Foreign income is taxable unless repatriated through official channels.';
-        actionItem = 'Check your repatriation compliance.';
+      title = '100% Tax Free';
+      message = 'Your income is below the ₦800,000 threshold. No PAYE should be deducted.';
+      actionItem = 'Ensure HR is not deducting tax o!.';
     } else {
-      status = 'warning';
-      title = 'ℹ️ Personal Income Tax Due';
-      message = 'You are liable for PIT.';
+      status = 'safe';
+      title = 'You are Compliant (PAYE)';
+      message = 'Your employer deducts tax automatically. However, you might be overpaying if you haven\'t claimed reliefs.';
       
-      // Rent Relief Calculation
       if (profile.paysRent && profile.rentAmount) {
         const relief = Math.min(profile.rentAmount * 0.2, 500000);
-        message += ` Good news: You can deduct ₦${relief.toLocaleString()} from your taxable income as Rent Relief.`;
+        status = 'warning';
+        title = ' Claim Your Rent Relief';
+        message = `You are eligible to deduct ₦${relief.toLocaleString()} from your taxable income. This will reduce your monthly PAYE and increase your salary.`;
+        actionItem = 'Submit your Rent Receipt to HR/Finance.';
+      } else {
+        actionItem = 'Check your payslip for correct deductions.';
       }
-      actionItem = 'File via your State Internal Revenue Service.';
+    }
+  }
+
+  // --- 3. FREELANCER / INVESTOR LOGIC ---
+  else {
+    if (profile.annualIncome === 'below_800k') {
+      status = 'safe';
+      title = '100% Tax Free';
+      message = 'Your income is below the new ₦800,000 tax-free threshold. You do not owe tax.';
+      actionItem = 'No filing required.';
+    } 
+    else {
+      status = 'warning';
+      title = 'ℹ️ Personal Income Tax Due';
+      message = 'Since you earn above ₦800k, you must file Personal Income Tax directly via Direct Assessment.';
+      actionItem = 'Register for Direct Assessment with SBIR.';
+
+      if (profile.persona === 'investor') {
+         title = '📈 Capital Gains Tax Due';
+         message = 'Profits from Stocks, Crypto, and Assets are taxable. Crypto is now specifically taxed under the 2026 Act.';
+         actionItem = 'Calculate Capital Gains Tax.';
+      }
+
+      if (profile.paysRent && profile.rentAmount) {
+        const relief = Math.min(profile.rentAmount * 0.2, 500000);
+        message += `\n\n💰 RENT RELIEF: You can deduct ₦${relief.toLocaleString()} from your taxable income.`;
+      }
     }
   }
 

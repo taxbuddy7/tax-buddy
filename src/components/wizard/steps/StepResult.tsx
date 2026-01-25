@@ -1,11 +1,10 @@
 import { CheckCircle, AlertTriangle, XCircle, Download } from 'lucide-react';
-import { calculateTaxStatus } from '@/lib/tax-logic'; // Make sure you have the logic file
+import { calculateTaxStatus } from '@/lib/tax-logic'; 
 import { TaxProfile } from '@/types';
 
 export default function StepResult({ profile, onRestart }: { profile: TaxProfile, onRestart: () => void }) {
   const result = calculateTaxStatus(profile);
 
-  // Dynamic Styles based on status
   const statusConfig = {
     safe: {
       icon: <CheckCircle className="w-16 h-16 text-green-500 mb-4" />,

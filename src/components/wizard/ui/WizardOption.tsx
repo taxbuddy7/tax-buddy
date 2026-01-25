@@ -7,7 +7,7 @@ interface WizardOptionProps {
   selected: boolean;
   onClick: () => void;
   icon: ReactNode;
-  type?: 'radio' | 'checkbox'; // Support both single and multi-select
+  type?: 'radio' | 'checkbox'; 
 }
 
 export function WizardOption({ title, subtitle, selected, onClick, icon, type = 'radio' }: WizardOptionProps) {
@@ -21,7 +21,6 @@ export function WizardOption({ title, subtitle, selected, onClick, icon, type = 
           : "border-gray-100 hover:border-green-200 hover:bg-gray-50"}
       `}
     >
-      {/* Icon Box (Gray background) */}
       <div className={`
         flex-shrink-0 w-12 h-12 rounded-lg flex items-center justify-center mr-4 transition-colors
         ${selected ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"}
