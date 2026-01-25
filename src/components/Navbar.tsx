@@ -44,7 +44,7 @@ const Navbar = () => {
               Explore
             </a>
             <a href="#features" className="px-4 py-2 text-gray-600 hover:text-green-600 font-medium text-sm transition-colors">Features</a>
-            <a href="#company" className="px-4 py-2 text-gray-600 hover:text-green-600 font-medium text-sm transition-colors">Company</a>
+            <a href="/calculator" className="px-4 py-2 text-gray-600 hover:text-green-600 font-medium text-sm transition-colors">Calculator</a>
             <a href="#service" className="px-4 py-2 text-gray-600 hover:text-green-600 font-medium text-sm transition-colors">Service</a>
             <a href="#resources" className="px-4 py-2 text-gray-600 hover:text-green-600 font-medium text-sm transition-colors">Resources</a>
             <a href="#about" className="px-4 py-2 text-gray-600 hover:text-green-600 font-medium text-sm transition-colors">About us</a>

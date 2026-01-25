@@ -2,15 +2,19 @@ export type PersonaType = 'business' | 'freelancer' | 'salary' | 'investor';
 
 export type TaxProfile = {
   persona: PersonaType | null;
-  // Business Specifics
+
+  // --- BUSINESS SPECIFICS ---
   companyType?: 'ltd' | 'business_name' | 'unregistered';
-  revenueBand?: 'below_25m' | '25m_50m' | 'above_50m';
-  // Individual Specifics
+  // UPDATED: Now reflects the 2026 ₦100m Exemption Threshold
+  revenueBand?: 'below_25m' | '25m_100m' | 'above_100m'; 
+
+  // --- INDIVIDUAL SPECIFICS ---
   incomeSource?: 'local' | 'foreign' | 'digital';
   annualIncome?: 'below_800k' | '800k_2.5m' | 'above_2.5m';
-  // Deductions
+
+  // --- DEDUCTIONS ---
   paysRent: boolean;
-  rentAmount?: number;
+  rentAmount?: number; // Used for the Rent Relief Calc
   hasPension: boolean;
 };
 

@@ -19,29 +19,30 @@ export default function StepIncome({ profile, update }: Props) {
         {profile.persona === 'business' ? (
           <>
             <WizardOption 
-              title="Startups / Small Biz" 
-              subtitle="Below ₦25 Million"
+              title="Small Business" 
+              subtitle="Turnover < ₦25 Million"
               icon={<Wallet className="w-6 h-6"/>}
               selected={profile.revenueBand === 'below_25m'}
               onClick={() => update({ revenueBand: 'below_25m' })}
             />
             <WizardOption 
-              title="Growing Business" 
-              subtitle="₦25M - ₦50M"
+              title="Medium Enterprise" 
+              subtitle="₦25M - ₦100M (New Exemption)"
               icon={<TrendingUp className="w-6 h-6"/>}
-              selected={profile.revenueBand === '25m_50m'}
-              onClick={() => update({ revenueBand: '25m_50m' })}
+              selected={profile.revenueBand === '25m_100m'} 
+              onClick={() => update({ revenueBand: '25m_100m' })}
             />
             <WizardOption 
               title="Large Company" 
-              subtitle="Above ₦50 Million"
+              subtitle="Above ₦100 Million"
               icon={<Building2 className="w-6 h-6"/>}
-              selected={profile.revenueBand === 'above_50m'}
-              onClick={() => update({ revenueBand: 'above_50m' })}
+              selected={profile.revenueBand === 'above_100m'}
+              onClick={() => update({ revenueBand: 'above_100m' })}
             />
           </>
         ) : (
           <>
+            {/* INDIVIDUALS (Unchanged) */}
             <WizardOption 
               title="Low Income" 
               subtitle="Below ₦800k / year"
