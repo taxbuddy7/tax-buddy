@@ -6,7 +6,7 @@ export function calculateTaxStatus(profile: TaxProfile) {
   let message = '';
   let actionItem = '';
 
-  // --- 1. BUSINESS OWNER LOGIC (UPDATED FOR 2026 ACT) ---
+  // --- 1. BUSINESS OWNER LOGIC 
   if (profile.persona === 'business') {
     if (profile.revenueBand === 'below_25m') {
       status = 'safe';
@@ -14,14 +14,13 @@ export function calculateTaxStatus(profile: TaxProfile) {
       message = 'Good news! Small companies with <₦25m turnover are exempt from CIT, VAT, and the new Development Levy.';
       actionItem = 'File "Nil Returns" by June 30th.';
     } 
-    // UPDATED: Now covers ₦25M - ₦100M (The new exemption zone)
+   
     else if (profile.revenueBand === '25m_100m') {
       status = 'warning';
       title = '⚠️ CIT Exempt, but VAT Applies';
       message = 'Under the 2026 Act, companies with turnover <₦100m pay 0% Income Tax. However, you MUST collect and remit VAT.';
       actionItem = 'Register for VAT immediately.';
     } 
-    // UPDATED: Standard Regime is now only for >₦100M
     else {
       status = 'danger';
       title = '🚨 Standard Tax Regime Applies';
@@ -34,12 +33,12 @@ export function calculateTaxStatus(profile: TaxProfile) {
   else if (profile.persona === 'salary') {
     if (profile.annualIncome === 'below_800k') {
       status = 'safe';
-      title = '✅ 100% Tax Free';
+      title = ' 100% Tax Free';
       message = 'Your income is below the ₦800,000 threshold. No PAYE should be deducted.';
       actionItem = 'Ensure HR is not deducting tax o!.';
     } else {
       status = 'safe';
-      title = '✅ You are Compliant (PAYE)';
+      title = ' You are Compliant (PAYE)';
       message = 'Your employer deducts tax automatically. However, you might be overpaying if you haven\'t claimed reliefs.';
       
       if (profile.paysRent && profile.rentAmount) {

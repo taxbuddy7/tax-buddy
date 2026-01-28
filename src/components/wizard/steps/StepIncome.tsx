@@ -42,7 +42,6 @@ export default function StepIncome({ profile, update }: Props) {
           </>
         ) : (
           <>
-            {/* INDIVIDUALS (Unchanged) */}
             <WizardOption 
               title="Low Income" 
               subtitle="Below ₦800k / year"

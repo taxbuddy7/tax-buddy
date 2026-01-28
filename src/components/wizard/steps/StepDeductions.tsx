@@ -23,8 +23,6 @@ export default function StepDeductions({ profile, update }: Props) {
             selected={profile.paysRent}
             onClick={() => update({ paysRent: !profile.paysRent })}
         />
-        
-        {/* Conditional Rent Input */}
         {profile.paysRent && (
             <div className="ml-4 pl-12 -mt-2 mb-4 animate-in slide-in-from-top-2 fade-in duration-300">
             <label className="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">

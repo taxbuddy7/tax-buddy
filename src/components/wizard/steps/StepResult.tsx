@@ -50,7 +50,7 @@ export default function StepResult({ profile, onRestart }: { profile: TaxProfile
         </div>
       </div>
 
-      {/* Action Item Box */}
+      {/* Action Box */}
       <div className="bg-white p-6 rounded-2xl border-2 border-gray-100 shadow-sm mb-8 text-left relative overflow-hidden group hover:border-green-200 transition-colors cursor-pointer">
         <div className="absolute top-0 left-0 w-1 h-full bg-green-500"></div>
         <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">
